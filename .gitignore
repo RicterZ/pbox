@@ -1,0 +1,5 @@
+*.pyc
+*.db
+db.sqlite3
+.idea
+pbox/local_settings.py
