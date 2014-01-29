@@ -1,4 +1,4 @@
 pbox
 ====
 
-A django+django rest framework+angular bbs
+A django+django rest framework bbs
