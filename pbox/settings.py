@@ -23,7 +23,7 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+#AUTH_USER_MODEL = 'pbox_backend.models.User'
 # Application definition
 
 INSTALLED_APPS = (
@@ -36,7 +36,17 @@ INSTALLED_APPS = (
     'pbox_backend',
     'django.contrib.admin',
     'rest_framework',
+    'rest_framework.authtoken',
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -51,6 +61,12 @@ ROOT_URLCONF = 'pbox.urls'
 
 WSGI_APPLICATION = 'pbox.wsgi.application'
 
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+AUTH_USER_MODEL = 'pbox_backend.User'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
