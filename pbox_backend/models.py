@@ -92,6 +92,9 @@ class Reply(models.Model):
     published_date = models.DateTimeField(default=timezone.now())
     post = models.ForeignKey(Post, related_name='reply')
 
+    class Meta:
+        ordering = ["-id"]
+
 
 class Notification(models.Model):
     author = models.ForeignKey(User, related_name='send_notifications')
