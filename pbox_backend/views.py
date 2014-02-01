@@ -5,17 +5,20 @@ from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser, I
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework import status
 from permissions import IsAuthorOrReadOnly
-from serializers import PostSerializer, UserSerializer, GroupSerializer, NodeSerializer, UserDataSerializer, \
-NotificationSerializer
+from serializers import PostSerializer, UserSerializer, GroupSerializer, NodeSerializer, \
+    UserDataSerializer, NotificationSerializer, ReplySerializer
 from pbox_backend.models import Post, User, Group, Node, Notification
 
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
-    serializer_class = PostSerializer
+    #serializer_class = PostSerializer
     permission_classes = (IsAuthorOrReadOnly,)
     #permission_classes = (AllowAny,)
 
+    def get_serializer_class(self):
+        print self.action
+        return PostSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):

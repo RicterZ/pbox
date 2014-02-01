@@ -5,8 +5,18 @@ from pbox_backend.models import Post, Reply, User, Group, Node, Notification, GE
 
 
 class PostSerializer(serializers.ModelSerializer):
+    #reply = serializers.RelatedField(many=True)
+
     class Meta:
         model = Post
+        read_only_fields = ('published_date',)
+
+
+class PostDetailSerializer(serializers.ModelSerializer):
+    reply = serializers.RelatedField(many=True)
+
+    class Meta:
+        model = Reply
         read_only_fields = ('published_date',)
 
 
