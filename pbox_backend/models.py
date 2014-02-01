@@ -90,11 +90,12 @@ class Reply(models.Model):
     author = models.ForeignKey(User)
     content = models.TextField()
     published_date = models.DateTimeField(default=timezone.now())
-    post = models.ForeignKey(Post)
+    post = models.ForeignKey(Post, related_name='reply')
 
 
 class Notification(models.Model):
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, related_name='send_notifications')
+    receiver = models.ForeignKey(User, related_name='notifications')
     content = models.TextField()
     send_date = models.DateTimeField(default=timezone.now())
 

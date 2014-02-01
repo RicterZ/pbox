@@ -1,7 +1,7 @@
 import re
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
-from pbox_backend.models import Post, Reply, User, Group, Node, GENERAL, FORBIDDEN, OWNER, MANAGER
+from pbox_backend.models import Post, Reply, User, Group, Node, Notification, GENERAL, FORBIDDEN, OWNER, MANAGER
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -55,3 +55,9 @@ class GroupSerializer(serializers.ModelSerializer):
 class NodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Node
+
+
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        read_only_fields = ('send_date',)
